@@ -94,6 +94,7 @@ var (
 		"scheduling.0.max_run_duration",
 		"scheduling.0.on_instance_stop_action",
 		"scheduling.0.local_ssd_recovery_timeout",
+		"scheduling.0.location_hint",
 	}
 
 	shieldedInstanceConfigKeys = []string{
@@ -921,6 +922,12 @@ be from 0 to 999,999,999 inclusive.`,
 									},
 								},
 							},
+						},
+						"location_hint": {
+							Type:         schema.TypeString,
+							Optional:     true,
+							AtLeastOneOf: schedulingKeys,
+							Description:  `Specifies the location hint used to place the instance close to other resources.`,
 						},
 					},
 				},

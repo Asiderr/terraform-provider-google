@@ -169,6 +169,10 @@ func expandScheduling(v interface{}) (*compute.Scheduling, error) {
 		scheduling.LocalSsdRecoveryTimeout = transformedLocalSsdRecoveryTimeout
 		scheduling.ForceSendFields = append(scheduling.ForceSendFields, "LocalSsdRecoveryTimeout")
 	}
+	if v, ok := original["location_hint"]; ok {
+		scheduling.LocationHint = v.(string)
+		scheduling.ForceSendFields = append(scheduling.ForceSendFields, "LocationHint")
+	}
 	return scheduling, nil
 }
 
@@ -264,6 +268,7 @@ func flattenScheduling(resp *compute.Scheduling) []map[string]interface{} {
 		"min_node_cpus":               resp.MinNodeCpus,
 		"provisioning_model":          resp.ProvisioningModel,
 		"instance_termination_action": resp.InstanceTerminationAction,
+		"location_hint":               resp.LocationHint,
 	}
 
 	if resp.AutomaticRestart != nil {
