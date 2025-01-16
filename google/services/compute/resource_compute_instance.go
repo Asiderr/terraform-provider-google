@@ -96,6 +96,7 @@ var (
 		"scheduling.0.max_run_duration",
 		"scheduling.0.on_instance_stop_action",
 		"scheduling.0.local_ssd_recovery_timeout",
+		"scheduling.0.termination_time",
 	}
 
 	shieldedInstanceConfigKeys = []string{
@@ -927,6 +928,14 @@ be from 0 to 999,999,999 inclusive.`,
 									},
 								},
 							},
+						},
+						"termination_time": {
+							Type:         schema.TypeString,
+							Optional:     true,
+							AtLeastOneOf: schedulingKeys,
+							Description: `Specifies the timestamp, when the instance will be terminated,
+in RFC3339 text format. If specified, the instance termination action
+will be performed at the termination time.`,
 						},
 					},
 				},
